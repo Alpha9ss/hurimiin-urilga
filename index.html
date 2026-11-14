@@ -350,22 +350,6 @@
       </div>
     </div>
 
-    <section>
-      <div class="ornament">❧</div>
-      <h2 class="section-title">Дурсамжит мөчүүд</h2>
-      <p class="section-sub">БИДНИЙ НАНДИН ДУРСАМЖУУД</p>
-      <div class="gallery-shell">
-        <div class="gallery" id="gallery">
-          <div class="gallery-card"><img src="assets/photos/photo-1.jpg" alt="Дурсамжийн зураг 1" onerror="this.style.display='none'"><div class="photo-placeholder"><b>01</b><span>photo-1.jpg</span></div></div>
-          <div class="gallery-card"><img src="assets/photos/photo-2.jpg" alt="Дурсамжийн зураг 2" onerror="this.style.display='none'"><div class="photo-placeholder"><b>02</b><span>photo-2.jpg</span></div></div>
-          <div class="gallery-card"><img src="assets/photos/photo-3.jpg" alt="Дурсамжийн зураг 3" onerror="this.style.display='none'"><div class="photo-placeholder"><b>03</b><span>photo-3.jpg</span></div></div>
-          <div class="gallery-card"><img src="assets/photos/photo-4.jpg" alt="Дурсамжийн зураг 4" onerror="this.style.display='none'"><div class="photo-placeholder"><b>04</b><span>photo-4.jpg</span></div></div>
-          <div class="gallery-card"><img src="assets/photos/photo-5.jpg" alt="Дурсамжийн зураг 5" onerror="this.style.display='none'"><div class="photo-placeholder"><b>05</b><span>photo-5.jpg</span></div></div>
-        </div>
-        <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-      </div>
-      <p class="note">Зургуудыг баруун эсвэл зүүн тийш гүйлгэн үзээрэй</p>
-    </section>
 
     <section>
       <div class="card">
@@ -407,7 +391,8 @@
       <div class="ornament">✧ ❧ ✧</div>
       <h2 class="section-title">Хүрэлцэн ирэхээ баталгаажуулна уу</h2>
       <p class="section-sub">ТАНЫГ ИРЭХЭД БИД БАЯРТАЙ БАЙХ БОЛНО</p>
-      <form class="card form-card" id="rsvpForm">
+      <form class="card form-card" id="rsvpForm" action="https://formspree.io/f/myewzejb" method="POST">
+        <input type="hidden" name="_subject" value="Шинэ хуримын RSVP хариу">
         <label for="guestName">Таны нэр</label>
         <input id="guestName" name="guestName" placeholder="Нэр, овгоо бичнэ үү" required>
         <label for="attendance">Та хуримд хүрэлцэн ирэх үү?</label>
@@ -442,7 +427,6 @@
     // ===== EDIT THESE DETAILS WHEN THEY ARE CONFIRMED =====
     const EVENT_DATE = "2026-12-02T18:00:00"; // 2026 оны 12-р сарын 2, 18:00 цаг
     const MAP_URL = ""; // Sky Palace-ийн Google Maps холбоосыг энд оруулна
-    const RSVP_WHATSAPP = "+97694460302"; // Шаардлагатай бол зохион байгуулагчийн дугаараар солино
     // ======================================================
 
     const mapLink = document.getElementById("mapLink");
@@ -463,7 +447,7 @@ dateNote.innerHTML = `
     <span>${months[eventDate.getMonth()]}</span>
   </div>
   <div class="calendar-info">
-    <strong>${eventDate.getFullYear()} жыл</strong>
+    <strong>${eventDate.getFullYear()} он</strong>
     <span>${weekdays[eventDate.getDay()]}</span>
     <span>18:00 цагт</span>
   </div>
@@ -494,24 +478,7 @@ document.querySelectorAll(".hero-photo img, .gallery-card img").forEach(img => {
   }
 });
 
-    // Gallery auto-advances and remains swipeable on phones.
-    const gallery = document.getElementById("gallery");
-    let galleryTimer;
-    function startGallery() {
-      clearInterval(galleryTimer);
-      galleryTimer = setInterval(() => {
-        const card = gallery.querySelector(".gallery-card");
-        if (!card) return;
-        const max = gallery.scrollWidth - gallery.clientWidth;
-        if (gallery.scrollLeft >= max - 8) gallery.scrollTo({left:0,behavior:"smooth"});
-        else gallery.scrollBy({left:card.getBoundingClientRect().width + 11,behavior:"smooth"});
-      }, 3500);
-    }
-    startGallery();
-    gallery.addEventListener("touchstart",()=>clearInterval(galleryTimer),{passive:true});
-    gallery.addEventListener("touchend",startGallery,{passive:true});
 
-    
 const audio = document.getElementById("backgroundMusic");
 
 const MUSIC_START = 20;  // Start at 00:27
@@ -538,7 +505,7 @@ openButton.addEventListener("click", async () => {
     await audio.play();
     updateMusicButton();
   } catch (error) {
-    musicHint.textContent = "Хөгжимийг0 асаахын тулд ♫ дарна уу";
+    musicHint.textContent = "Хөгжим асаахын тулд ♫ товчийг дарна уу";
   }
 });
 
@@ -565,7 +532,7 @@ musicButton.addEventListener("click", async () => {
     try {
       await audio.play();
     } catch (error) {
-      musicHint.textContent = "Хөгжим асаах мүмкін болмады";
+      musicHint.textContent = "Хөгжим асааж чадсангүй";
     }
   } else {
     audio.pause();
@@ -585,7 +552,7 @@ rsvpForm.addEventListener("submit", async (e) => {
 
   const originalText = submitButton.textContent;
   submitButton.disabled = true;
-  submitButton.textContent = "ЖІБЕРІЛУДЕ...";
+  submitButton.textContent = "ИЛГЭЭЖ БАЙНА...";
 
   try {
     const response = await fetch("https://formspree.io/f/myewzejb", {
