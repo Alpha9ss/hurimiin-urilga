@@ -308,6 +308,11 @@
 .couple-names h1 {
   margin: 3px 0;
 }
+    .invitation-heading {
+  white-space: nowrap;
+  font-size: clamp(14px, 4vw, 22px);
+  text-align: center;
+}
     <style>
   /* Your existing CSS */
 
@@ -472,7 +477,7 @@
 
     <footer>
       ТА БҮХНИЙГ ХҮНДЭТГЭН ХҮЛЭЭНЭ
-      <strong>А. Жархын &amp; Х. Жанылсын</strong>
+      <strong class="invitation-heading">А. Жархын &amp; Х. Жанылсын</strong>
       <span>Хуримын урилга • 2026</span>
     </footer>
   </main>
@@ -484,7 +489,7 @@
   <script>
     // ===== EDIT THESE DETAILS WHEN THEY ARE CONFIRMED =====
     const EVENT_DATE = "2026-12-02T18:00:00"; // 2026 оны 12-р сарын 2, 18:00 цаг
-    const MAP_URL = ""; // Sky Palace-ийн Google Maps холбоосыг энд оруулна
+    const MAP_URL = "https://maps.app.goo.gl/K4Br69dAQAeEk7m28"; // Sky Palace-ийн Google Maps холбоосыг энд оруулна
     // ======================================================
 
     const mapLink = document.getElementById("mapLink");
