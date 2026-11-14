@@ -384,7 +384,7 @@
     <span>АРВАН НЭГДҮГЭЭР САР</span>
   </div>
   <div class="calendar-info">
-    <strong>2026 жыл</strong>
+    <strong>2026 жил</strong>
     <span>Ням гараг</span>
     <span>18:00 цагт</span>
   </div>
@@ -514,7 +514,7 @@ document.querySelectorAll(".hero-photo img, .gallery-card img").forEach(img => {
     
 const audio = document.getElementById("backgroundMusic");
 
-const MUSIC_START = 27;  // Start at 00:27
+const MUSIC_START = 20;  // Start at 00:27
 const MUSIC_END = 200;   // End at 03:20
 
 const musicButton = document.getElementById("musicButton");
@@ -538,7 +538,7 @@ openButton.addEventListener("click", async () => {
     await audio.play();
     updateMusicButton();
   } catch (error) {
-    musicHint.textContent = "Хөгжим асаах үшін ♫ басыңыз";
+    musicHint.textContent = "Хөгжимийг0 асаахын тулд ♫ дарна уу";
   }
 });
 
